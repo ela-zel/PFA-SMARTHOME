@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from symbiotdelta.creatingo.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="Jozef Dvorský - creatingo.com">
+
+	<title>SYMBIOT Delta Dashboard - Bootstrap 4 theme</title>
+	<!-- jQuery -->
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
+    <link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<!-- Preloader START -->
+	<div id="iot-preloader">
+		<div class="center-preloader d-flex align-items-center">
+			<div class="spinners">
+				<div class="spinner01"></div>
+				<div class="spinner02"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Preloader END -->
+
+	<!-- Alerts Modal START -->
+	<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button> Security SW update available
+					</div>
+					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button> New device recognized
+					</div>
+					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button> User profile is not complete
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+	</div>
+	<!-- Alerts Modal END -->
+
+	<!-- Arming Modal START -->
+	<div class="modal modal-warning centered fade" id="armModal" tabindex="-1" role="dialog" aria-label="Arming" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="armTimer">
+						<h3 class="font-weight-bold">EXIT NOW! <span class="timer font-weight-normal"></span></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<!-- Arming Modal END -->
+
+	<!-- Arming Modal with key START -->
+	<div class="modal modal-nobg centered fade" id="armModalPIN" tabindex="-1" role="dialog" aria-label="Arming/Disarming" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="keyboard">
+						<div class="row">
+							<div class="col-12 p-2">
+								<h3 id="hidden-key">&nbsp;</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">1</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">2</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">3</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">4</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">5</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">6</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">7</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">8</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">9</button>
+							</div>
+							<div class="col-4 p-2">
+								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">0</button>
+							</div>
+							<div class="col-8 p-2">
+								<button data-action="clear-key" type="button" class="btn btn-outline-secondary btn-lg w-100">CLEAR</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 p-2">
+								<p class="">Enter any 4 numbers :)</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button id="cancel-keyboard" type="button" class="close close-modal">
+			<span>&times;</span>
+		</button>
+	</div>
+	<!-- Arming Modal with key END -->
+
+	<!-- Alarm Modal START -->
+	<div class="modal modal-danger centered fade" id="alarmModal" tabindex="-1" role="dialog" aria-label="ALARM" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" data-dismiss="modal">
+				<div class="modal-body d-flex">
+					<svg class="icon-sprite icon-2x icon-pulse"><use xlink:href="assets/images/icons-sprite.svg#alarm"/></svg>
+					<h3 class="text-right font-weight-bold ml-auto align-self-center">MOTION DETECTED!</h3>
+				</div>
+			</div>
+			<p class="mt-2 text-center text-danger">Click the red area to accept/close message</p>
+		</div>
+	</div>
+	<!-- Alarm Modal END -->
+
+	<!-- Fire Alarm Modal START -->
+	<div class="modal modal-danger centered fade" id="fire-alarmModal" tabindex="-1" role="dialog" aria-label="FIRE ALARM" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" data-dismiss="modal">
+				<div class="modal-body d-flex">
+					<svg class="icon-sprite icon-2x icon-pulse"><use xlink:href="assets/images/icons-sprite.svg#fire"/></svg>
+					<h3 class="text-right font-weight-bold ml-auto align-self-center">SMOKE DETECTED!</h3>
+				</div>
+			</div>
+			<p class="mt-2 text-center text-danger">Click the red area to accept/close message</p>
+		</div>
+	</div>
+	<!-- Fire Alarm Modal END -->
+
+	<!-- Wrapper START -->
+	<div id="wrapper" class="hidden">
+
+		<!-- Top navbar START -->
+		<nav class="navbar fixed-top border-bottom">
+			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets/images/symbiot-delta.svg" alt="SYMBIOT Delta"></a>
+			<div class="ml-auto">
+				<div class="navbar-nav navbar-icons flex-row">
+					<div class="nav-item">
+						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button" data-alerts="3" data-toggle="modal" data-target="#alertsModal">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#alert"/>
+								<svg class="text-danger"><use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot"/></svg>
+							</svg>
+						</button>
+					</div>
+					<div class="nav-item">
+						<a class="nav-link" href="settings.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#settings"/></svg> 
+						</a>
+					</div>
+					<div class="nav-item">
+						<a class="nav-link" href="login.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#logout"/></svg> 
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- Top navbar END -->
+
+		<!-- Main content START -->
+		<div class="container-fluid px-4 px-sm-5">
+			<!-- Featured START -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body d-flex flex-wrap align-items-center p-0">
+							<div class="col-sm-12 col-lg-7 p-0">
+								<div class="ratio-container ratio-8-6 house-bg">
+									<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600">
+										<defs>
+										  <radialGradient id="half-radial" fx="50%" fy="0%" r="50%">
+											  <stop offset="0" stop-color="#ffff9f" stop-opacity="1"/>
+											  <stop offset="1" stop-color="#ffff9f" stop-opacity="0" />
+										  </radialGradient>
+										</defs>
+										<g id="house-armed" style="opacity: 0;">
+										  <rect x="194" y="356" opacity="0.75" fill="#d40050" width="86" height="138"/>
+										  <path fill="#ffffff" d="M249.5,424v-4c0-6.63-5.37-12-12-12s-12,5.37-12,12v4h-4v22h32v-22H249.5z M239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z M243.5,424h-12v-4c0-3.31,2.69-6,6-6s6,2.69,6,6V424z"/>
+										 </g>
+										 <g id="house-disarmed" style="opacity: 1;">
+										  <rect x="194" y="356" opacity="0.75" fill="#97bf0d" width="86" height="138"/>
+										  <path fill="#ffffff" d="M249.5,424v-6c0-6.63-5.37-12-12-12s-12,5.37-12,12h6c0-3.31,2.69-6,6-6s6,2.69,6,6v6h-22v22h32v-22H249.5zM239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z"/>
+										 </g>
+										 <rect id="doorway-light" x="194" y="356" fill="url(#half-radial)" width="86" height="43"/>
+										 <rect id="garage-light" x="328" y="373" fill="url(#half-radial)" width="260" height="130"/>
+										 <line id="roll-doors" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12" fill="none" stroke="#ffffff" stroke-width="250" stroke-dasharray="20 5 20 5 20 5 20 5 20 110" x1="458" y1="380" x2="458" y2="500"/>
+									</svg>
+								</div>
+							</div>
+							<div class="col-sm-12 col-lg-5 p-3">
+								<ul class="list-group list-group-flush border-bottom-0">
+									<li class="list-group-item d-flex lock px-0 px-sm-3" data-unit="switch-house-lock-pin">
+										<div class="title-status">
+											<h4>Security system</h4>
+											<p class="status"><span class="arm"></span></p>
+										</div>
+										<label class="switch ml-auto mt-2">
+											<input type="checkbox" id="switch-house-lock-pin">
+										</label>
+									</li>
+									<li class="list-group-item d-flex px-0 px-sm-3" data-unit="garage-doors">
+										<div class="title-status">
+											<h4>Garage doors</h4>
+											<p class="status">Closed</p>
+										</div>
+										<div class="ml-auto mt-2 timer-controls" data-controls="garage-doors">
+											<button data-action="open" type="button" class="btn btn-primary roll-doors-control">Open</button>
+											<button data-action="pause" type="button" class="btn btn-secondary roll-doors-control">Pause</button>
+											<button data-action="resume" type="button" class="btn btn-secondary roll-doors-control">Resume</button>
+											<button data-action="close" type="button" class="btn btn-primary roll-doors-control">Close</button>
+										</div>
+									</li>
+									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-doorway">
+										<div class="title-status">
+											<h5>Doorway light</h5>
+										</div>
+										<label class="switch ml-auto">
+											<input type="checkbox" id="switch-light-doorway">
+										</label>
+									</li>
+									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-garage">
+										<div class="title-status">
+											<h5>Garage light</h5>
+										</div>
+										<label class="switch ml-auto">
+											<input type="checkbox" id="switch-light-garage">
+										</label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Featured END -->
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-xl-4">
+					<!-- Interior lights  START -->
+					<div class="card" data-unit-group="switch-lights">
+						<div class="card-body">
+							<h3 class="card-title">Lights - interior</h3>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item d-flex active" data-unit="switch-light-1">
+								<svg class="icon-sprite">
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								</svg>
+								<h5>Kitchen</h5>
+								<label class="switch ml-auto checked">
+									<input type="checkbox" id="switch-light-1" checked>
+								</label>
+								<div class="info-holder info-rb" style="right:40px;">
+									<div data-toggle="popover-all" data-content="Checkbox element using localStorage to remember the last status." data-original-title="Switch ON/OFF" data-container="body" data-placement="top" data-offset="0,-6"></div>
+								</div>
+							</li>
+							<li class="list-group-item d-flex" data-unit="switch-light-2">
+								<svg class="icon-sprite">
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								</svg>
+								<h5>Dining room</h5>
+								<label class="switch ml-auto">
+									<input type="checkbox" id="switch-light-2">
+								</label>
+							</li>
+							<li class="list-group-item d-flex" data-unit="switch-light-3">
+								<svg class="icon-sprite">
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								</svg>
+								<h5>Living room</h5>
+								<label class="switch ml-auto">
+									<input type="checkbox" id="switch-light-3">
+								</label>
+							</li>
+							<li class="list-group-item d-flex" data-unit="switch-light-4">
+								<svg class="icon-sprite">
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								</svg>
+								<h5>Bedroom</h5>
+								<label class="switch ml-auto">
+									<input type="checkbox" id="switch-light-4">
+								</label>
+							</li>
+							<li class="list-group-item d-flex" data-unit="switch-light-5">
+								<svg class="icon-sprite">
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								</svg>
+								<h5>Bathroom</h5>
+								<label class="switch ml-auto">
+									<input type="checkbox" id="switch-light-5">
+								</label>
+							</li>
+						</ul>
+						<div class="card-body">
+							<div class="lights-controls" data-controls="switch-lights">
+								<button data-action="all-on" type="button" class="btn btn-secondary lights-control">All <strong>ON</strong></button>
+								<button data-action="all-off" type="button" class="btn btn-primary lights-control">All <strong>OFF</strong></button>
+							</div>
+						</div>
+					</div>
+					<!-- Interior lights  END -->
+				</div>
+				<div class="col-sm-12 col-md-6 col-xl-4">
+					<!-- Exterior lights  START -->
+					<h3 class="card-title my-3">Lights - exterior</h3>
+					<div class="card" data-unit="switch-light-6">
+						<div class="card-body d-flex flex-row justify-content-start">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+							</svg>
+							<h5>Front doors</h5>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-light-6">
+							</label>
+						</div>
+					</div>
+					<div class="card" data-unit="switch-light-7">
+						<div class="card-body d-flex">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+							</svg>
+							<h5>Back doors</h5>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-light-7">
+							</label>
+						</div>
+					</div>
+					<div class="card" data-unit="switch-light-8">
+						<div class="card-body d-flex">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+							</svg>
+							<h5>Pool</h5>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-light-8">
+							</label>
+						</div>
+					</div>
+					<div class="card" data-unit="switch-light-9">
+						<div class="card-body d-flex">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+							</svg>
+							<h5>Garage</h5>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-light-9">
+							</label>
+						</div>
+					</div>
+					<!-- Exterior lights  END -->
+				</div>
+				<div class="col-sm-12 col-md-6 col-xl-4">
+					<!-- Appliances  START -->
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">Appliances</h3>
+						</div>
+						<hr class="my-0">
+						<!-- Washing machine  START -->
+						<ul class="list-group borderless active" data-unit="wash-machine">
+							<li class="list-group-item d-flex pb-0">
+								<svg class="icon-sprite icon-1x">
+									<use xlink:href="assets/images/icons-sprite.svg#wash-machine"/>
+								</svg>
+								<h5>Washing machine</h5>
+								<p class="ml-auto status">ON</p>
+							</li>
+							<li class="list-group-item d-flex pt-0 pb-4">
+								<p class="entry">Remaining time</p>
+								<p id="wash-machine" class="ml-auto mb-0"></p>
+							</li>
+						</ul>
+						<!-- Washing machine  END -->
+						<hr class="my-0">
+						<!-- Fridge  START -->
+						<ul class="list-group borderless active" data-unit="home-fridge">
+							<li class="list-group-item d-flex pb-0">
+								<svg class="icon-sprite icon-1x">
+									<use xlink:href="assets/images/icons-sprite.svg#home-fridge"/>
+								</svg>
+								<h5>Fridge</h5>
+								<p class="ml-auto status">ON</p>
+							</li>
+							<li class="list-group-item d-flex pt-0 pb-4">
+								<p class="entry">Temperature</p>
+								<p class="ml-auto mb-0">35<sup>°F</sup></p>
+							</li>
+						</ul>
+						<!-- Fridge  END -->
+						<hr class="my-0">
+						<!-- TV  START -->
+						<ul class="list-group borderless" data-unit="tv-lcd">
+							<li class="list-group-item d-flex">
+								<svg class="icon-sprite icon-1x">
+									<use xlink:href="assets/images/icons-sprite.svg#tv-lcd"/>
+								</svg>
+								<h5>TV</h5>
+								<p class="ml-auto status">OFF</p>
+							</li>
+						</ul>
+						<!-- TV  END -->
+					</div>
+					<!-- Appliances  END -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<!-- Camera 1  START -->
+					<div class="card active" data-unit="switch-camera-1">
+						<div class="card-img-top card-stream">
+							<div class="embed-responsive embed-responsive-16by9">
+								<video muted loop>
+									<source src="assets/videos/street.mp4" type="video/mp4" />
+									<source src="assets/videos/street.webm" type="video/webm" />
+								</video>
+								<div class="card-preloader">
+									<div class="center-preloader d-flex align-items-center">
+										<div class="spinners">
+											<div class="spinner01"></div>
+											<div class="spinner02"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-img-top card-stream off">
+							<div class="embed-responsive embed-responsive-16by9">
+								<h2 class="center-abs">OFF</h2>
+							</div>
+						</div>
+						<div class="card-body d-flex">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#camera"/>
+							</svg>
+							<h5>Outdoor front</h5>
+							<label class="switch ml-auto checked">
+								<input type="checkbox" id="switch-camera-1" checked>
+							</label>
+						</div>
+					</div>
+					<!-- Camera 1  END -->
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<!-- Camera 2  START -->
+					<div class="card" data-unit="switch-camera-2">
+						<div class="card-img-top card-stream">
+							<div class="embed-responsive embed-responsive-16by9">
+								<video muted loop>
+									<source src="assets/videos/room.mp4" type="video/mp4" />
+									<source src="assets/videos/room.webm" type="video/webm" />
+								</video>
+								<div class="card-preloader">
+									<div class="center-preloader d-flex align-items-center">
+										<div class="spinners">
+											<div class="spinner01"></div>
+											<div class="spinner02"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-img-top card-stream off">
+							<div class="embed-responsive embed-responsive-16by9">
+								<h2 class="center-abs">OFF</h2>
+							</div>
+						</div>
+						<div class="card-body d-flex">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#camera"/>
+							</svg>
+							<h5>Joe's room</h5>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-camera-2">
+							</label>
+						</div>
+					</div>
+					<!-- Camera 2  END -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<!-- Security system START -->
+					<div class="card lock" data-unit="switch-house-lock">
+						<div class="card-body d-flex flex-wrap">
+							<svg class="icon-sprite icon-2x">
+								<use xlink:href="assets/images/icons-sprite.svg#home"/>
+								<use class="subicon-unlocked" xlink:href="assets/images/icons-sprite.svg#subicon-unlocked"/>
+								<use class="subicon-locked" xlink:href="assets/images/icons-sprite.svg#subicon-locked"/>
+							</svg>
+							<div class="title-status">
+								<h4>Security system</h4>
+								<p class="status"><span class="arm"></span></p>
+							</div>
+							<label class="switch ml-auto">
+								<input type="checkbox" id="switch-house-lock">
+							</label>
+						</div>
+					</div>
+					<!-- Security system END -->
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<!-- Garage-doors START -->
+					<div class="card" data-unit="garage-doors-1">
+						<div class="card-body">
+							<div class="d-flex flex-wrap mb-2">
+								<svg class="icon-sprite icon-1x">
+									<use xlink:href="assets/images/icons-sprite.svg#garage"/>
+								</svg>
+								<div class="title-status">
+									<h5>Garage doors</h5>
+									<p class="status">Closed</p>
+								</div>
+								<div class="ml-auto timer-controls" data-controls="garage-doors-1">
+									<button data-action="open" type="button" class="btn btn-primary doors-control">Open</button>
+									<button data-action="pause" type="button" class="btn btn-secondary doors-control">Pause</button>
+									<button data-action="resume" type="button" class="btn btn-secondary doors-control">Resume</button>
+									<button data-action="close" type="button" class="btn btn-primary doors-control">Close</button>
+								</div>
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-tiny timer" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12"></div>
+							</div>
+							<div class="info-holder info-cb">
+								<div data-toggle="popover-all" data-content="Element driven by javascript (countdown timer)." data-original-title="Progress indicator" data-placement="top" data-offset="0,-12"></div>
+							</div>
+						</div>
+					</div>
+					<!-- Garage-doors END -->
+				</div>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-sm-12">
+					<!-- Demonstration - buttons -->
+					<button type="button" class="btn btn-primary my-2">PRIMARY</button>
+					<button type="button" class="btn btn-secondary my-2">SECONDARY</button>
+					<button type="button" class="btn btn-lg btn-danger mx-2 my-2" data-toggle="modal" data-target="#alarmModal"> Demo ALARM </button>
+					<button type="button" class="btn btn-danger my-2" data-toggle="modal" data-target="#fire-alarmModal"> Fire ALARM </button>
+					<button type="button" class="btn btn-warning my-2">WARNING</button>
+					<button type="button" class="btn btn-success my-2">SUCCESS</button>
+					<button type="button" class="btn btn-info my-2">INFO</button>
+				</div>
+			</div>
+		</div>
+		<!-- Main content END -->
+
+		<!-- Bottom navbar START -->
+		<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+			<button class="navbar-toggler mx-auto text-primary collapsed" type="button" data-toggle="collapse" data-target="#bottomCollapse" aria-expanded="false">
+        		<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#menu-arrow"/></svg>
+      		</button>
+			<div class="collapse navbar-collapse" id="bottomCollapse">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item active">
+						<a class="nav-link active" href="index-2.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#dashboard"/></svg> <span>Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="lights.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/></svg> <span>Lights</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cameras.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#camera"/></svg> <span>Cameras</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="climate.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#thermometer"/></svg> <span>Climate</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="appliances.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#appliances"/></svg> <span>Appliances</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Bottom navbar END -->
+
+	</div>
+	<!-- Wrapper END -->
+
+	<!-- FAB button - bottom right on large screens -->
+	<button id="info-toggler" type="button" class="btn btn-primary btn-fab btn-fixed-br d-none d-lg-inline-block">
+    	<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#info"/></svg>
+	</button>
+
+
+	<!-- Bootstrap bundle -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Cross browser support for SVG icon sprites -->
+	<script src="assets/js/svg4everybody.min.js"></script>
+
+	<!-- jQuery countdown timer plugin (Exit modal, Garage doors, Washing machine) -->
+	<script src="assets/js/iot-timer.min.js"></script>
+
+	<!-- Basic theme functionality (arming, garage doors, switches ...) - using jQuery -->
+	<script src="assets/js/iot-functions.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+
+			// Get checkbox statuses from localStorage if available (IE)
+			if (localStorage) {
+
+
+				// Switch statuses
+				var switchValues = JSON.parse(localStorage.getItem('switchValues')) || {};
+
+				$.each(switchValues, function(key, value) {
+
+					// Apply only if element is included on the page
+					if ($('[data-unit="' + key + '"]').length) {
+
+						if (value === true) {
+
+							// Apply appearance of the "unit" and checkbox element
+							$('[data-unit="' + key + '"]').addClass("active");
+							$("#" + key).prop('checked', true);
+							$("#" + key).closest("label").addClass("checked");
+
+							//In case of Security unit with SVG illustration
+							if (key === "switch-house-lock-pin") {
+								$('#house-disarmed').css('opacity', '0');
+								$('#house-armed').css('opacity', '1');
+							}
+
+							//In case of Doorway light (featured)
+							if (key === "switch-light-doorway") {
+								$('#doorway-light').addClass("active");
+							}
+
+							//In case of Garage light (featured)
+							if (key === "switch-light-garage") {
+								$('#garage-light').addClass("active");
+							}
+
+							//In case of Camera unit - play video
+							if (key === "switch-camera-1" || key === "switch-camera-2") {
+								$('[data-unit="' + key + '"] video')[0].play();
+							}
+
+						} else {
+							$('[data-unit="' + key + '"]').removeClass("active");
+							$("#" + key).prop('checked', false);
+							$("#" + key).closest("label").removeClass("checked");
+
+							//In case of Security unit with SVG illustration
+							if (key === "switch-house-lock-pin") {
+								$('#house-disarmed').css('opacity', '1');
+								$('#house-armed').css('opacity', '0');
+							}
+
+							//In case of Doorway light (featured)
+							if (key === "switch-light-doorway") {
+								$('#doorway-light').removeClass("active");
+							}
+
+							//In case of Garage light (featured)
+							if (key === "switch-light-garage") {
+								$('#garage-light').removeClass("active");
+							}
+
+							if (key === "switch-camera-1" || key === "switch-camera-2") {
+								$('[data-unit="' + key + '"] video')[0].pause();
+							}
+						}
+					}
+				});
+			}
+
+			// Switch (checkbox element) toogler
+			$('.switch input[type="checkbox"]').on("change", function(t) {
+
+				// Check the time between changes to prevert Android native browser execute twice
+				// If you dont need support for Android native browser - just call "switchSingle" function
+				if (this.last) {
+
+					this.diff = t.timeStamp - this.last;
+
+					// Don't execute if the time between changes is too short (less than 250ms) - Android native browser "twice bug"
+					// The real time between two human taps/clicks is usually much more than 250ms"
+					if (this.diff > 250) {
+
+						this.last = t.timeStamp;
+
+						iot.switchSingle(this.id, this.checked);
+
+					} else {
+						return false;
+					}
+
+				} else {
+
+					// First attempt on this switch element
+					this.last = t.timeStamp;
+
+					iot.switchSingle(this.id, this.checked);
+
+				}
+			});
+
+			// All ON/OFF controls
+			$('.lights-control').click(function() {
+
+				var target = $(this).closest('.lights-controls').data('controls');
+				var action = $(this).data('action');
+
+				iot.switchGroup(target, action);
+			});
+
+			// Reposition to center when a modal is shown
+			$('.modal.centered').on('show.bs.modal', iot.centerModal);
+
+			// Reset/Stop countdown timer (EXIT NOW)
+			$('#armModal').on('hide.bs.modal', iot.clearCountdown);
+
+			// Reset PIN keyboard and checkbox
+			$('#cancel-keyboard').click(function() {
+				iot.clearKeyboard();
+			});
+
+			// Garage roll-doors controls
+			$('.roll-doors-control').click(function() {
+
+				var target = $(this).closest('.timer-controls').data('controls');
+				var action = $(this).data('action');
+				iot.garageDoorsRoll(target, action);
+
+			});
+
+			// Garage doors controls
+			$('.doors-control').click(function() {
+
+				var target = $(this).closest('.timer-controls').data('controls');
+				var action = $(this).data('action');
+				iot.garageDoors(target, action);
+
+			});
+
+			// Alerts "Close" callback - hide modal and alert indicator dot when user closes all alerts
+			$('#alertsModal .alert').on('close.bs.alert', function() {
+				var sum = $('#alerts-toggler').attr('data-alerts');
+				sum = sum - 1;
+				$('#alerts-toggler').attr('data-alerts', sum);
+
+				if (sum === 0) {
+					$('#alertsModal').modal('hide');
+					$('#alerts-toggler').attr('data-toggle', 'none');
+
+				}
+
+			});
+
+			// Show/hide tips (popovers) - FAB button (right bottom on large screens)
+			$('#info-toggler').click(function() {
+
+				if ($('body').hasClass('info-active')) {
+					$('[data-toggle="popover-all"]').popover('hide');
+					$('body').removeClass('info-active');
+				} else {
+					$('[data-toggle="popover-all"]').popover('show');
+					$('body').addClass('info-active');
+				}
+			});
+
+			// Hide tips (popovers) by clicking outside
+			$('body').on('click', function(pop) {
+
+				if (pop.target.id !== 'info-toggler' && $('body').hasClass('info-active')) {
+					$('[data-toggle="popover-all"]').popover('hide');
+					$('body').removeClass('info-active');
+				}
+
+			});
+
+		});
+
+		// Apply necessary changes, functionality when content is loaded
+		$(window).on('load', function() {
+
+			// This script is necessary for cross browsers icon sprite support (IE9+, ...) 
+			svg4everybody();
+
+			// Washing machine - demonstration of running program/cycle
+			$('#wash-machine').timer({
+				countdown: true,
+				format: '%H:%M:%S',
+				duration: '1h17m10s',
+				callback: function() {
+					$('[data-unit="wash-machine"]').removeClass("active");
+					$('[data-unit="wash-machine"] .status').html('OFF');
+				}
+			});
+
+			if ($('[data-unit="switch-camera-1"]').hasClass("active")) {
+				var activeVideo = $('[data-unit="switch-camera-1"] video').get(0);
+
+				if (activeVideo.paused) {
+					activeVideo.autoplay = true;
+					activeVideo.load();
+					activeVideo.play();
+				} else {
+					activeVideo.pause();
+				}
+			}
+
+			if ($('[data-unit="switch-camera-2"]').hasClass("active")) {
+				var activeVideo = $('[data-unit="switch-camera-2"] video').get(0);
+
+				if (activeVideo.paused) {
+					activeVideo.autoplay = true;
+					activeVideo.load();
+					activeVideo.play();
+				} else {
+					activeVideo.pause();
+				}
+			}
+
+			// "Timeout" function is not neccessary - important is to hide the preloader overlay
+			setTimeout(function() {
+
+				// Hide preloader overlay when content is loaded
+				$('#iot-preloader,.card-preloader').fadeOut();
+				$("#wrapper").removeClass("hidden");
+
+				// Check for Main contents scrollbar visibility and set right position for FAB button
+				iot.positionFab();
+
+			}, 800);
+
+		});
+
+		// Apply necessary changes if window resized
+		$(window).on('resize', function() {
+
+			// Modal reposition when the window is resized
+			$('.modal.centered:visible').each(iot.centerModal);
+
+			// Check for Main contents scrollbar visibility and set right position for FAB button
+			iot.positionFab();
+		});
+
+	</script>
+
+</body>
+
+
+<!-- Mirrored from symbiotdelta.creatingo.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+</html>

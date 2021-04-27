@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from symbiotdelta.creatingo.com/settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="Jozef Dvorský - creatingo.com">
+
+	<title>SYMBIOT Delta Settings page - Bootstrap 4 theme</title>
+	<!-- jQuery -->
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
+    <link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<!-- Preloader -->
+	<div id="iot-preloader">
+		<div class="center-preloader d-flex align-items-center">
+			<div class="spinners">
+				<div class="spinner01"></div>
+				<div class="spinner02"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Alerts Modal -->
+	<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              				<span aria-hidden="true">&times;</span>
+            			</button> Security SW update available
+					</div>
+					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              				<span aria-hidden="true">&times;</span>
+            			</button> New device recognized
+					</div>
+					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              				<span aria-hidden="true">&times;</span>
+            			</button> User profile is not complete
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+	</div>
+
+	<!-- Wrapper START -->
+	<div id="wrapper" class="hidden">
+		<!-- Top navbar START -->
+		<nav class="navbar fixed-top border-bottom">
+			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets/images/symbiot-delta.svg" alt="SYMBIOT Delta"></a>
+			<div class="ml-auto">
+				<div class="navbar-nav navbar-icons flex-row">
+					<div class="nav-item">
+						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button" data-alerts="3" data-toggle="modal" data-target="#alertsModal">
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#alert"/>
+								<svg class="text-danger"><use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot"/></svg>
+							</svg>
+						</button>
+					</div>
+					<div class="nav-item">
+						<a class="nav-link" href="settings.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#settings"/></svg> 
+						</a>
+					</div>
+					<div class="nav-item">
+						<a class="nav-link" href="login.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#logout"/></svg> 
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- Top navbar END -->
+
+		<!-- Main content START -->
+		<div class="container-fluid px-4 px-sm-5">
+			<div class="row">
+				<div class="col-12 col-sm-10 offset-sm-1">
+					<!-- Profile tabs START -->
+					<ul class="nav nav-tabs nav-fill" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#personal" role="tab">PERSONAL</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#address" role="tab">ADDRESS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#password" role="tab">PASSWORD</a>
+						</li>
+					</ul>
+					<div class="info-holder info-ct">
+						<div data-toggle="popover-all" data-content="Customized tabbed interface" data-original-title="Tabs" data-placement="bottom" data-offset="0,48"></div>
+					</div>
+					<!-- Profile tab panes -->
+					<div class="tab-content px-4 px-sm-0 py-sm-4 mt-4">
+						<!-- Personal pane START -->
+						<div class="tab-pane fade show active" id="personal" role="tabpanel">
+							<form>
+								<div class="form-group row">
+									<label for="first-name" class="col-12 col-sm-3 col-form-label">First name</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="Joe" id="first-name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="last-name" class="col-12 col-sm-3 col-form-label">Last name</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="Doe" id="last-name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-email" class="col-12 col-sm-3 col-form-label">Email</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="email" value="info@creatingo.com" id="user-email">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-tel" class="col-12 col-sm-3 col-form-label">Phone</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="tel" value="1-(555)-555-5555" id="user-tel">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="offset-xs-0 offset-sm-3 col-12 col-sm-9 mt-3">
+										<button type="submit" class="btn btn-primary">Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- Personal pane END -->
+						<!-- Address pane START -->
+						<div class="tab-pane fade" id="address" role="tabpanel">
+							<form>
+								<div class="form-group row">
+									<label for="street" class="col-12 col-sm-3 col-form-label">Street</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="Street address, P.O. BOX 49" id="street">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="city" class="col-12 col-sm-3 col-form-label">City / Town</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="Fort Progress" id="city">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="city" class="col-12 col-sm-3 col-form-label">State / Region</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="California" id="city">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="zip" class="col-12 col-sm-3 col-form-label">Zip / Postal</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="text" value="90099" id="zip">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="country" class="col-12 col-sm-3 col-form-label">Country</label>
+									<div class="col-12 col-sm-9">
+										<select class="form-control custom-focus" id="country">
+                            				<option>USA</option>
+                            				<option>CANADA</option>
+                            				<option>GREAT BRITAIN</option>
+                          				</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="offset-xs-0 offset-sm-3 col-12 col-sm-9 mt-3">
+										<button type="submit" class="btn btn-primary">Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- Address pane END -->
+						<!-- Password pane START -->
+						<div class="tab-pane fade" id="password" role="tabpanel">
+							<form>
+								<div class="form-group row">
+									<label for="user-password" class="col-12 col-sm-3 col-form-label">Password</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus" type="password" value="professor" id="user-password">
+									</div>
+								</div>
+								<div class="form-group row has-success">
+									<label for="user-password-confirm" class="col-12 col-sm-3 col-form-label">Confirm password</label>
+									<div class="col-12 col-sm-9">
+										<input class="form-control custom-focus is-valid" type="password" value="professor" id="user-password-confirm">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="offset-xs-0 offset-sm-3 col-12 col-sm-9 mt-3">
+										<button type="submit" class="btn btn-primary">Save password</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- Password pane END -->
+					</div>
+					<!-- Profile tabs END -->
+				</div>
+			</div>
+		</div>
+		<!-- Main content END -->
+		<!-- Bottom navbar START -->
+		<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+			<button class="navbar-toggler mx-auto text-primary collapsed" type="button" data-toggle="collapse" data-target="#bottomCollapse" aria-expanded="false">
+        		<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#menu-arrow"/></svg>
+      		</button>
+			<div class="collapse navbar-collapse" id="bottomCollapse">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index-2.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#dashboard"/></svg> <span>Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="lights.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/></svg> <span>Lights</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cameras.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#camera"/></svg> <span>Cameras</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="climate.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#thermometer"/></svg> <span>Climate</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="appliances.html">
+							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#appliances"/></svg> <span>Appliances</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Bottom navbar END -->
+
+	</div>
+	<!-- Wrapper END -->
+
+	<!-- FAB button - bottom right on large screens -->
+	<button id="info-toggler" type="button" class="btn btn-primary btn-fab btn-fixed-br d-none d-lg-inline-block">
+    	<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#info"/></svg>
+  	</button>
+
+
+	<!-- Bootstrap bundle -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Cross browser support for SVG icon sprites -->
+	<script src="assets/js/svg4everybody.min.js"></script>
+
+	<!-- Basic theme functionality (arming, garage doors, switches ...) - using jQuery -->
+	<script src="assets/js/iot-functions.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			// Reposition to center when a modal is shown
+			$('.modal.centered').on('show.bs.modal', iot.centerModal);
+
+			// Alerts "Close" callback - hide modal and alert indicator icon dot when user close all alerts
+			$('#alertsModal .alert').on('close.bs.alert', function() {
+				var sum = $('#alerts-toggler').attr('data-alerts');
+				sum = sum - 1;
+				$('#alerts-toggler').attr('data-alerts', sum);
+
+				if (sum === 0) {
+					$('#alertsModal').modal('hide');
+					$('#alerts-toggler').attr('data-toggle', 'none');
+				}
+			});
+
+			// Show/hide tips (popovers) - FAB button (right bottom on large screens)
+			$('#info-toggler').click(function() {
+
+				if ($('body').hasClass('info-active')) {
+					$('[data-toggle="popover-all"]').popover('hide');
+					$('body').removeClass('info-active');
+				} else {
+					$('[data-toggle="popover-all"]').popover('show');
+					$('body').addClass('info-active');
+				}
+			});
+
+			// Hide tips (popovers) by clicking outside
+			$('body').on('click', function(pop) {
+
+				if (pop.target.id !== 'info-toggler' && $('body').hasClass('info-active')) {
+					$('[data-toggle="popover-all"]').popover('hide');
+					$('body').removeClass('info-active');
+				}
+
+			});
+
+		});
+
+		// Apply necessary changes, functionality when content is loaded
+		$(window).on('load', function() {
+
+			// This script is necessary for cross browsers icon sprite support (IE9+, ...) 
+			svg4everybody();
+
+			// "Timeout" function is not neccessary - important is to hide preloader overlay
+			setTimeout(function() {
+
+				// Hide preloader overlay when content is loaded
+				$('#iot-preloader,.card-preloader').fadeOut();
+				$("#wrapper").removeClass("hidden");
+
+				// Check if Main contents scrollbar visibility and set right position for FAB button
+				iot.positionFab();
+
+			}, 800);
+
+		});
+
+		// Apply necessary changes if window resized
+		$(window).on('resize', function() {
+
+			// Modal reposition when the window is resized
+			$('.modal.centered:visible').each(iot.centerModal);
+
+			// Check if Main contents scrollbar visibility and set right position for FAB button
+			iot.positionFab();
+		});
+
+	</script>
+
+</body>
+
+
+<!-- Mirrored from symbiotdelta.creatingo.com/settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+</html>
