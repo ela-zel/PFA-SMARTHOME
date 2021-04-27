@@ -32,7 +32,6 @@ client.on('message',function(topic, message, packet){
 });
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-
 // use res.render to load up an ejs view file
 app.use("/assets",express.static('assets'))
 // index page
