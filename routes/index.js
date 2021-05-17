@@ -10,5 +10,22 @@ app.get('/', function(req, res) {
 app.get('/login', function(req, res) {
     res.render('pages/login.ejs');
 });
-
+//appliances
+app.get('/appliances', function(req, res) {
+    res.render('pages/appliances.ejs');
+});
+//Dashboard
+app.get('/index-2', function(req, res) {
+    res.render('pages/index-2.ejs');
+});
+//lights
+app.get('/lights', function(req, res) {
+    res.render('pages/lights.ejs');
+});
+app.get('/cameras', function(req, res) {
+    res.render('pages/cameras.ejs');
+});
+app.get('/climate', function(req, res) {
+    res.render('pages/climate.ejs');
+});
 module.exports = app

@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Jozef Dvorský - creatingo.com">
 
-	<title>SYMBIOT Delta Dashboard - Bootstrap 4 theme</title>
+	<title>MARELLA Dashboard - Bootstrap 4 theme</title>
 	<!-- jQuery -->
 	<script
 	src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -254,12 +254,12 @@
 											<button data-action="close" type="button" class="btn btn-primary roll-doors-control">Close</button>
 										</div>
 									</li>
-									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-doorway">
+									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-Garden">
 										<div class="title-status">
-											<h5>Doorway light</h5>
+											<h5>Garden light</h5>
 										</div>
 										<label class="switch ml-auto">
-											<input type="checkbox" id="switch-light-doorway">
+											<input type="checkbox" id="switch-light-Garden">
 										</label>
 									</li>
 									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-garage">
@@ -588,40 +588,8 @@
 		<!-- Main content END -->
 
 		<!-- Bottom navbar START -->
-		<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-			<button class="navbar-toggler mx-auto text-primary collapsed" type="button" data-toggle="collapse" data-target="#bottomCollapse" aria-expanded="false">
-        		<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#menu-arrow"/></svg>
-      		</button>
-			<div class="collapse navbar-collapse" id="bottomCollapse">
-				<ul class="navbar-nav mx-auto">
-					<li class="nav-item active">
-						<a class="nav-link active" href="index-2.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#dashboard"/></svg> <span>Dashboard</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="lights.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/></svg> <span>Lights</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cameras.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#camera"/></svg> <span>Cameras</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="climate.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#thermometer"/></svg> <span>Climate</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="appliances.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#appliances"/></svg> <span>Appliances</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+
+		<%- include('../partials/navbar.ejs') %>
 		<!-- Bottom navbar END -->
 
 	</div>
@@ -674,9 +642,9 @@
 								$('#house-armed').css('opacity', '1');
 							}
 
-							//In case of Doorway light (featured)
-							if (key === "switch-light-doorway") {
-								$('#doorway-light').addClass("active");
+							//In case of Garden light (featured)
+							if (key === "switch-light-Garden") {
+								$('#Garden-light').addClass("active");
 							}
 
 							//In case of Garage light (featured)
@@ -700,9 +668,9 @@
 								$('#house-armed').css('opacity', '0');
 							}
 
-							//In case of Doorway light (featured)
-							if (key === "switch-light-doorway") {
-								$('#doorway-light').removeClass("active");
+							//In case of Garden light (featured)
+							if (key === "switch-light-Garden") {
+								$('#Garden-light').removeClass("active");
 							}
 
 							//In case of Garage light (featured)
