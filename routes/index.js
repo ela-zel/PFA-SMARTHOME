@@ -28,4 +28,10 @@ app.get('/cameras', function(req, res) {
 app.get('/climate', function(req, res) {
     res.render('pages/climate.ejs');
 });
+app.get('/settings', function(req, res) {
+    res.render('pages/settings.ejs');
+});
+app.get('/login', function(req, res) {
+    res.render('pages/login.ejs');
+});
 module.exports = app
