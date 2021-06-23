@@ -9,6 +9,7 @@
   "author": "Ela Zelfani & Mariem Rezgui",
   "license": "ISC",
   "dependencies": {
+    "darkmode-js": "^1.5.7",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mqtt": "^4.2.6"
