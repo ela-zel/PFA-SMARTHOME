@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-
 // index page
 app.get('/', function(req, res) {
     res.render('pages/index.ejs');
