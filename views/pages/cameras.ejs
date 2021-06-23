@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from symbiotdelta.creatingo.com/cameras.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,13 +13,12 @@
 	<link rel="icon" href="assets\images\favicon2.png">
 	<title>MARELLA Cameras - Bootstrap 4 theme</title>
 	<!-- jQuery -->
-	<script
-	src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
-    <link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
-
+	<link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
+<!--Mqttt-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
 </head>
 
 <body>
@@ -34,7 +34,8 @@
 	</div>
 
 	<!-- Alerts Modal -->
-	<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts" aria-hidden="true">
+	<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts"
+		aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -65,25 +66,33 @@
 	<div id="wrapper" class="hidden">
 		<!-- Top navbar START -->
 		<nav class="navbar fixed-top border-bottom">
-			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets/images/logo.png" alt="SYMBIOT Delta"></a>
+			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets/images/logo.png"
+					alt="SYMBIOT Delta"></a>
 			<div class="ml-auto">
 				<div class="navbar-nav navbar-icons flex-row">
 					<div class="nav-item">
-						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button" data-alerts="3" data-toggle="modal" data-target="#alertsModal">
+						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button"
+							data-alerts="3" data-toggle="modal" data-target="#alertsModal">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#alert"/>
-								<svg class="text-danger"><use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot"/></svg>
+								<use xlink:href="assets/images/icons-sprite.svg#alert" />
+								<svg class="text-danger">
+									<use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot" />
+								</svg>
 							</svg>
 						</button>
 					</div>
 					<div class="nav-item">
 						<a class="nav-link" href="/settings">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#settings"/></svg> 
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#settings" />
+							</svg>
 						</a>
 					</div>
 					<div class="nav-item">
 						<a class="nav-link" href="/login">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#logout"/></svg> 
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#logout" />
+							</svg>
 						</a>
 					</div>
 				</div>
@@ -98,11 +107,8 @@
 					<!-- Camera 1  START -->
 					<div class="card active" data-unit="switch-camera-1">
 						<div class="card-img-top card-stream">
-							<div class="embed-responsive embed-responsive-16by9">
-								<video muted loop>
-									<source src="assets/videos/street.mp4" type="video/mp4" />
-									<source src="assets/videos/street.webm" type="video/webm" />
-								</video>
+							<div class="embed-responsive center">
+								<img src="http://192.168.1.35:8081/" alt="http://192.168.1.35:8081/" class="center" height="480px">
 								<div class="card-preloader">
 									<div class="center-preloader d-flex align-items-center">
 										<div class="spinners">
@@ -121,7 +127,7 @@
 						<!-- Camera switch START -->
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#camera"/>
+								<use xlink:href="assets/images/icons-sprite.svg#camera" />
 							</svg>
 							<h5>Outdoor front</h5>
 							<label class="switch ml-auto checked">
@@ -136,27 +142,29 @@
 								<p class="specs">Connection</p>
 								<p class="ml-auto mb-0 py-1 text-success">OK</p>
 							</li>
-							<div class="form-group row">
-								<div class="col-12 mt-3 mb-2 text-left">
-									<button  type="button" class="btn btn-primary lights-control">Right</button>
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-12 mt-3 mb-2 text-right">
-									<button  type="button" class="btn btn-primary lights-control">Left</button>
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-12 mt-3 mb-2 text-center">
-									<button  type="button" class="btn btn-primary lights-control">Up</button>
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-12 mt-3 mb-2 text-center">
-									<button  type="button" class="btn btn-primary lights-control">Down</button>
-								</div>
-							</div>
-	
+							<table align="center" class="mb-4">
+								<tr>
+									<td></td>
+									<td><button type="button" class="btn btn-primary"
+											onclick="moveCamer('y',-0.1)">Top</button></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><button type="button" class="btn btn-primary lights-control"
+											onclick="moveCamer('x',0.1)">Left</button></td>
+									<td></td>
+									<td><button type="button" class="btn btn-primary lights-control"
+											onclick="moveCamer('x',-0.1)">Right</button></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><button type="button" class="btn btn-primary lights-control"
+											onclick="moveCamer('y',0.1)">Down</button></td>
+									<td></td>
+								</tr>
+							</table>
+
+
 						</ul>
 						<!-- Bulb details END -->
 					</div>
@@ -189,12 +197,12 @@
 						<!-- Camera switch START -->
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-                      			<use xlink:href="assets/images/icons-sprite.svg#camera"/>
-                    		</svg>
+								<use xlink:href="assets/images/icons-sprite.svg#camera" />
+							</svg>
 							<h5>Front door</h5>
 							<label class="switch ml-auto">
-                      <input type="checkbox" id="switch-camera-2">
-                    </label>
+								<input type="checkbox" id="switch-camera-2">
+							</label>
 						</div>
 						<!-- Camera switch END -->
 						<hr class="my-0">
@@ -204,8 +212,8 @@
 								<p class="specs">Connection</p>
 								<p class="ml-auto mb-0 py-1 text-success">OK</p>
 							</li>
-							
-					
+
+
 						</ul>
 						<!-- Bulb details END -->
 					</div>
@@ -216,14 +224,16 @@
 		<!-- Main content END -->
 		<!-- Bottom navbar START -->
 		<%- include('../partials/navbar.ejs') %>
-		<!-- Bottom navbar END -->
+			<!-- Bottom navbar END -->
 	</div>
 	<!-- Wrapper END -->
 
 	<!-- FAB button - bottom right on large screens -->
 	<button id="info-toggler" type="button" class="btn btn-primary btn-fab btn-fixed-br d-none d-lg-inline-block">
-    	<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#info"/></svg>
-  	</button>
+		<svg class="icon-sprite">
+			<use xlink:href="assets/images/icons-sprite.svg#info" />
+		</svg>
+	</button>
 
 
 	<!-- Bootstrap bundle -->
@@ -239,7 +249,47 @@
 	<script src="assets/js/iot-functions.min.js"></script>
 
 	<script>
-		$(document).ready(function() {
+		var wsbroker = "192.168.1.35";  //mqtt websocket enabled broker
+			var wsport = 9001 // port for above
+
+			var client = new Paho.MQTT.Client(wsbroker, wsport,
+				"myclientid_" + parseInt(Math.random() * 100, 10));
+
+			client.onConnectionLost = function (responseObject) {
+				console.log("connection lost: " + responseObject.errorMessage);
+			};
+
+			client.onMessageArrived = function (message) {
+				console.log(message.destinationName, ' -- ', message.payloadString);
+			};
+
+			var options = {
+				userName: "pi",
+				password: "2021",
+				timeout: 3,
+				onSuccess: function () {
+					console.log("mqtt connected");
+					// Connection succeeded; subscribe to our topic, you can add multile lines of these
+					/* client.subscribe('smartHome/led/livingRoom', {qos: 1});
+			 
+				 
+					 //use the below if you want to publish to a topic on connect
+					 message = new Paho.MQTT.Message("true");
+					 message.destinationName = "smartHome/led/kitchen";
+					 client.send(message);*/
+
+				},
+				onFailure: function (message) {
+					console.log("Connection failed: " + message.errorMessage);
+				}
+			};
+		function moveCamer(axe, val) {
+				console.log(axe, toString(val))
+				message = new Paho.MQTT.Message(val.toString());
+				message.destinationName = "smartHome/cameraMovement/" + axe;
+				client.send(message);
+			}
+		$(document).ready(function () {
 
 
 			// Get checkbox statuses from localStorage if available (IE)
@@ -248,7 +298,7 @@
 				// Switch statuses
 				var switchValues = JSON.parse(localStorage.getItem('switchValues')) || {};
 
-				$.each(switchValues, function(key, value) {
+				$.each(switchValues, function (key, value) {
 
 					// Apply only if element is included on the page
 					if ($('[data-unit="' + key + '"]').length) {
@@ -260,16 +310,13 @@
 							$("#" + key).prop('checked', true);
 							$("#" + key).closest("label").addClass("checked");
 
-							//In case of Camera unit - play video
-							if (key === "switch-camera-1" || key === "switch-camera-2") {
-								$('[data-unit="' + key + '"] video')[0].play();
-							}
+							
 
 						} else {
 							$('[data-unit="' + key + '"]').removeClass("active");
 							$("#" + key).prop('checked', false);
 							$("#" + key).closest("label").removeClass("checked");
-							if (key === "switch-camera-1" || key === "switch-camera-2") {
+							if ( key === "switch-camera-2") {
 								$('[data-unit="' + key + '"] video')[0].pause();
 							}
 						}
@@ -278,7 +325,7 @@
 			}
 
 			// Switch (checkbox element) toogler
-			$('.switch input[type="checkbox"]').on("change", function(t) {
+			$('.switch input[type="checkbox"]').on("change", function (t) {
 
 				// Check the time between changes to prevert Android native browser execute twice
 				// If you dont need support for Android native browser - just call "switchSingle" function
@@ -312,7 +359,7 @@
 			$('.modal.centered').on('show.bs.modal', iot.centerModal);
 
 			// Alerts "Close" callback - hide modal and alert indicator dot when user closes all alerts
-			$('#alertsModal .alert').on('close.bs.alert', function() {
+			$('#alertsModal .alert').on('close.bs.alert', function () {
 				var sum = $('#alerts-toggler').attr('data-alerts');
 				sum = sum - 1;
 				$('#alerts-toggler').attr('data-alerts', sum);
@@ -326,7 +373,7 @@
 			});
 
 			// Show/hide tips (popovers) - FAB button (right bottom on large screens)
-			$('#info-toggler').click(function() {
+			$('#info-toggler').click(function () {
 
 				if ($('body').hasClass('info-active')) {
 					$('[data-toggle="popover-all"]').popover('hide');
@@ -338,7 +385,7 @@
 			});
 
 			// Hide tips (popovers) by clicking outside
-			$('body').on('click', function(pop) {
+			$('body').on('click', function (pop) {
 
 				if (pop.target.id !== 'info-toggler' && $('body').hasClass('info-active')) {
 					$('[data-toggle="popover-all"]').popover('hide');
@@ -347,25 +394,26 @@
 
 			});
 
+			//openDoor
+			$('#openDoor').click(function () {
+
+				//use the below if you want to publish to a topic on connect
+				console.log("door open")
+				message = new Paho.MQTT.Message("true");
+				message.destinationName = "smartHome/frontDoor";
+				client.send(message);
+
+			});
+			
 		});
 
 		// Apply necessary changes, functionality when content is loaded
-		$(window).on('load', function() {
+		$(window).on('load', function () {
 
 			// This script is necessary for cross browsers icon sprite support (IE9+, ...) 
 			svg4everybody();
 
-			if ($('[data-unit="switch-camera-1"]').hasClass("active")) {
-				var activeVideo = $('[data-unit="switch-camera-1"] video').get(0);
 
-				if (activeVideo.paused) {
-					activeVideo.autoplay = true;
-					activeVideo.load();
-					activeVideo.play();
-				} else {
-					activeVideo.pause();
-				}
-			}
 
 			if ($('[data-unit="switch-camera-2"]').hasClass("active")) {
 				var activeVideo = $('[data-unit="switch-camera-2"] video').get(0);
@@ -380,7 +428,7 @@
 			}
 
 			// "Timeout" function is not neccessary - important is to hide the preloader overlay
-			setTimeout(function() {
+			setTimeout(function () {
 
 				// Hide preloader overlay when content is loaded
 				$('#iot-preloader,.card-preloader').fadeOut();
@@ -390,11 +438,12 @@
 				iot.positionFab();
 
 			}, 800);
-
+			
+			client.connect(options);
 		});
 
 		// Apply necessary changes if window resized
-		$(window).on('resize', function() {
+		$(window).on('resize', function () {
 
 			// Modal reposition when the window is resized
 			$('.modal.centered:visible').each(iot.centerModal);
@@ -409,4 +458,5 @@
 
 
 <!-- Mirrored from symbiotdelta.creatingo.com/cameras.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+
 </html>
