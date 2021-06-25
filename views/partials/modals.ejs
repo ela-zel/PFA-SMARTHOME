@@ -1,0 +1,119 @@
+<!-- Alerts Modal START -->
+<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="alert alert-danger alert-dismissible fade show border-0" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> Security SW update available
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> New device recognized
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> User profile is not complete
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<!-- Alerts Modal END -->
+
+<!-- Arming Modal START -->
+<div class="modal modal-warning centered fade" id="armModal" tabindex="-1" role="dialog" aria-label="Arming"
+aria-hidden="true">
+<div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div id="armTimer">
+                <h3 class="font-weight-bold">EXIT NOW! <span class="timer font-weight-normal"></span></h3>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<!-- Arming Modal END -->
+
+<!-- Arming Modal with key START -->
+<div class="modal modal-nobg centered fade" id="armModalPIN" tabindex="-1" role="dialog"
+aria-label="Arming/Disarming" aria-hidden="true" data-backdrop="static">
+<div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="keyboard">
+                <div class="row">
+                    <div class="col-12 p-2">
+                        <h3 id="hidden-key">&nbsp;</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">1</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">2</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">3</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">4</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">5</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">6</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">7</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">8</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">9</button>
+                    </div>
+                    <div class="col-4 p-2">
+                        <button data-action="enter-key" type="button"
+                            class="btn btn-outline-primary btn-lg">0</button>
+                    </div>
+                    <div class="col-8 p-2">
+                        <button data-action="clear-key" type="button"
+                            class="btn btn-outline-secondary btn-lg w-100">CLEAR</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 p-2">
+                        <p class="">Enter any 4 numbers :)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="cancel-keyboard" type="button" class="close close-modal">
+    <span>&times;</span>
+</button>
+</div>

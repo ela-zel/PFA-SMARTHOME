@@ -2,6 +2,22 @@
 var express = require('express');
 const mqtt = require('mqtt')
 var app = express();
+const mongoose = require("mongoose");
+const apis = require("./api/routes.js");
+// parse env variables
+require("dotenv").config();
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+)
+
+app.use(express.json())
+//db
+const uri = `${process.env.SERVER_URI}`;
+mongoose.connect(uri, { useNewUrlParser: true,useUnifiedTopology: true})
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 //mqtt
 let options = {
     port: 1883,
@@ -29,7 +45,9 @@ client.on('message',function(topic, message, packet){
 	console.log("topic is "+ topic);
 });
 var routes = require("./routes");
-app.use(routes)
+app.use("/api", apis);
+
+app.use("/",routes)
 // set the view engine to ejs
 
 app.set('view engine', 'ejs');
