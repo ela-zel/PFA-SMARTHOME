@@ -18,7 +18,7 @@
 	crossorigin="anonymous"></script>
 	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
     <link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
@@ -100,9 +100,7 @@
 						<li class="nav-item">
 							<a class="nav-link active" data-toggle="tab" href="#personal" role="tab">PERSONAL</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#address" role="tab">ADDRESS</a>
-						</li>
+
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#password" role="tab">PASSWORD</a>
 						</li>
@@ -141,13 +139,13 @@
 								</div>
 								<div class="form-group row">
 									<div class="offset-xs-0 offset-sm-3 col-12 col-sm-9 mt-3">
-										<button type="submit" class="btn btn-primary">Save</button>
+										<button onclick="updateAccount()" class="btn btn-primary">Save</button>
 									</div>
 								</div>
 							</form>
 						</div>
 						<!-- Personal pane END -->
-						<!-- Address pane START -->
+						<!-- Address pane START 
 						<div class="tab-pane fade" id="address" role="tabpanel">
 							<form>
 								<div class="form-group row">
@@ -190,7 +188,7 @@
 									</div>
 								</div>
 							</form>
-						</div>
+						</div>-->
 						<!-- Address pane END -->
 						<!-- Password pane START -->
 						<div class="tab-pane fade" id="password" role="tabpanel">
@@ -222,40 +220,7 @@
 		</div>
 		<!-- Main content END -->
 		<!-- Bottom navbar START -->
-		<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-			<button class="navbar-toggler mx-auto text-primary collapsed" type="button" data-toggle="collapse" data-target="#bottomCollapse" aria-expanded="false">
-        		<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#menu-arrow"/></svg>
-      		</button>
-			<div class="collapse navbar-collapse" id="bottomCollapse">
-				<ul class="navbar-nav mx-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="index-2.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#dashboard"/></svg> <span>Dashboard</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="lights.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/></svg> <span>Lights</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cameras.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#camera"/></svg> <span>Cameras</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="climate.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#thermometer"/></svg> <span>Climate</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="appliances.html">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#appliances"/></svg> <span>Appliances</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+		<%- include('../partials/navbar.ejs') %>
 		<!-- Bottom navbar END -->
 
 	</div>
@@ -275,8 +240,10 @@
 
 	<!-- Basic theme functionality (arming, garage doors, switches ...) - using jQuery -->
 	<script src="assets/js/iot-functions.min.js"></script>
-
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 	<script>
+		var userID = localStorage.getItem('id');
 		$(document).ready(function() {
 
 			// Reposition to center when a modal is shown
@@ -317,10 +284,57 @@
 			});
 
 		});
-
+		//db actions
+		function updateAccount() {
+			$("#personal").submit(function(e){
+    e.preventDefault();
+  });
+			var fname=$("#first-name").val()
+			var lname=$("#last-name").val()
+			var email=$("#user-email").val()
+			var phone=$("#user-tel").val()
+			
+    $.ajax({
+      url: "/api/account/"+userID,
+      method: "patch",
+      data: {
+        fname: fname,
+		lname:lname,
+		email:email,
+		phone:phone
+      },
+      success: function (response) {
+		toastr.success('Account updated successfully');
+      },
+      error: function (request, error) {
+		toastr.danger('Problem accured, try again later');
+      },
+    });
+  }
 		// Apply necessary changes, functionality when content is loaded
 		$(window).on('load', function() {
-
+			
+			$.ajax({
+      url: "/api/accounts/" ,
+      method: "get",
+      success: function (response) {
+		
+		response.forEach(element => {
+			console.log(element._id,userID) 
+			if (element._id==userID) {
+				user=element
+			}
+			
+		});
+		$("#first-name").val(user.fname)
+		$("#last-name").val(user.lname)
+		$("#user-email").val(user.email)
+		$("#user-tel").val(user.phone)
+      },
+      error: function (request, error) {
+       console.log(error)
+      },
+    });
 			// This script is necessary for cross browsers icon sprite support (IE9+, ...) 
 			svg4everybody();
 

@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from symbiotdelta.creatingo.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,16 +13,25 @@
 	<link rel="icon" href="assets\images\favicon2.png">
 	<title>MARELLA Dashboard </title>
 	<!-- jQuery -->
-	<script
-	src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!--Mqttt-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
-    <link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	<!-- Bootstrap core CSS with custom theme variables + Additional theme styles -->
+	<link href="assets/css/iot-theme-bundle.min.css" rel="stylesheet">
 </head>
-<body onload="init();">
 
+<body onload="init();">
+	<% if (typeof user != "undefined") { %>
+		<!-- make user available to script tag -->
+		<% var user = user %>
+	  
+		<!-- use script tag to access ejs data and local storage -->
+		<script>
+		  let id = <%- JSON.stringify(user._id) %>;
+		  localStorage.setItem('id',  id);
+		</script>
+	  <% } %>
 	<!-- Preloader START -->
 	<div id="iot-preloader">
 		<div class="center-preloader d-flex align-items-center">
@@ -33,120 +43,19 @@
 	</div>
 	<!-- Preloader END -->
 
-	<!-- Alerts Modal START -->
-	<div class="modal modal-nobg centered fade" id="alertsModal" tabindex="-1" role="dialog" aria-label="Alerts" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible fade show border-0" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button> Security SW update available
-					</div>
-					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button> New device recognized
-					</div>
-					<div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button> User profile is not complete
-					</div>
-				</div>
-			</div>
-		</div>
-		<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
-      		<span aria-hidden="true">&times;</span>
-    	</button>
-	</div>
-	<!-- Alerts Modal END -->
-
-	<!-- Arming Modal START -->
-	<div class="modal modal-warning centered fade" id="armModal" tabindex="-1" role="dialog" aria-label="Arming" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div id="armTimer">
-						<h3 class="font-weight-bold">EXIT NOW! <span class="timer font-weight-normal"></span></h3>
-					</div>
-				</div>
-			</div>
-		</div>
-		<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<!-- Arming Modal END -->
-
-	<!-- Arming Modal with key START -->
-	<div class="modal modal-nobg centered fade" id="armModalPIN" tabindex="-1" role="dialog" aria-label="Arming/Disarming" aria-hidden="true" data-backdrop="static">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="keyboard">
-						<div class="row">
-							<div class="col-12 p-2">
-								<h3 id="hidden-key">&nbsp;</h3>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">1</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">2</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">3</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">4</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">5</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">6</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">7</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">8</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">9</button>
-							</div>
-							<div class="col-4 p-2">
-								<button data-action="enter-key" type="button" class="btn btn-outline-primary btn-lg">0</button>
-							</div>
-							<div class="col-8 p-2">
-								<button data-action="clear-key" type="button" class="btn btn-outline-secondary btn-lg w-100">CLEAR</button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 p-2">
-								<p class="">Enter any 4 numbers :)</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<button id="cancel-keyboard" type="button" class="close close-modal">
-			<span>&times;</span>
-		</button>
-	</div>
+	<%- include('../partials/modals.ejs') %>
 	<!-- Arming Modal with key END -->
 
 	<!-- Alarm Modal START -->
-	<div class="modal modal-danger centered fade" id="alarmModal" tabindex="-1" role="dialog" aria-label="ALARM" aria-hidden="true" data-backdrop="static">
+	<div class="modal modal-danger centered fade" id="alarmModal" tabindex="-1" role="dialog" aria-label="ALARM"
+		aria-hidden="true" data-backdrop="static">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" data-dismiss="modal">
 				<div class="modal-body d-flex">
-					<svg class="icon-sprite icon-2x icon-pulse"><use xlink:href="assets/images/icons-sprite.svg#alarm"/></svg>
-					<h3 class="text-right font-weight-bold ml-auto align-self-center">MOTION DETECTED!</h3>
+					<svg class="icon-sprite icon-2x icon-pulse">
+						<use xlink:href="assets/images/icons-sprite.svg#alarm" />
+					</svg>
+					<h3 class="text-right font-weight-bold ml-auto align-self-center">Combustible steam detected in your kitchen!</h3>
 				</div>
 			</div>
 			<p class="mt-2 text-center text-danger">Click the red area to accept/close message</p>
@@ -155,11 +64,14 @@
 	<!-- Alarm Modal END -->
 
 	<!-- Fire Alarm Modal START -->
-	<div class="modal modal-danger centered fade" id="fire-alarmModal" tabindex="-1" role="dialog" aria-label="FIRE ALARM" aria-hidden="true" data-backdrop="static">
+	<div class="modal modal-danger centered fade" id="fire-alarmModal" tabindex="-1" role="dialog"
+		aria-label="FIRE ALARM" aria-hidden="false" data-backdrop="static">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" data-dismiss="modal">
 				<div class="modal-body d-flex">
-					<svg class="icon-sprite icon-2x icon-pulse"><use xlink:href="assets/images/icons-sprite.svg#fire"/></svg>
+					<svg class="icon-sprite icon-2x icon-pulse">
+						<use xlink:href="assets/images/icons-sprite.svg#fire" />
+					</svg>
 					<h3 class="text-right font-weight-bold ml-auto align-self-center">SMOKE DETECTED!</h3>
 				</div>
 			</div>
@@ -173,25 +85,33 @@
 
 		<!-- Top navbar START -->
 		<nav class="navbar fixed-top border-bottom">
-			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets\images\logo.png" alt="MARELLA smartHome"></a>
+			<a class="navbar-brand pt-0 px-lg-3 px-1 mr-0" href="#"><img src="assets\images\logo.png"
+					alt="MARELLA smartHome"></a>
 			<div class="ml-auto">
 				<div class="navbar-nav navbar-icons flex-row">
 					<div class="nav-item">
-						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button" data-alerts="3" data-toggle="modal" data-target="#alertsModal">
+						<button id="alerts-toggler" class="btn btn-link nav-link" title="Alerts" type="button"
+							data-alerts="3" data-toggle="modal" data-target="#alertsModal">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#alert"/>
-								<svg class="text-danger"><use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot"/></svg>
+								<use xlink:href="assets/images/icons-sprite.svg#alert" />
+								<svg class="text-danger">
+									<use class="icon-dot" xlink:href="assets/images/icons-sprite.svg#icon-dot" />
+								</svg>
 							</svg>
 						</button>
 					</div>
 					<div class="nav-item">
 						<a class="nav-link" href="/settings">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#settings"/></svg> 
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#settings" />
+							</svg>
 						</a>
 					</div>
 					<div class="nav-item">
 						<a class="nav-link" href="/login">
-							<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#logout"/></svg> 
+							<svg class="icon-sprite">
+								<use xlink:href="assets/images/icons-sprite.svg#logout" />
+							</svg>
 						</a>
 					</div>
 				</div>
@@ -210,28 +130,38 @@
 								<div class="ratio-container ratio-8-6 house-bg">
 									<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600">
 										<defs>
-										  <radialGradient id="half-radial" fx="50%" fy="0%" r="50%">
-											  <stop offset="0" stop-color="#ffff9f" stop-opacity="1"/>
-											  <stop offset="1" stop-color="#ffff9f" stop-opacity="0" />
-										  </radialGradient>
+											<radialGradient id="half-radial" fx="50%" fy="0%" r="50%">
+												<stop offset="0" stop-color="#ffff9f" stop-opacity="1" />
+												<stop offset="1" stop-color="#ffff9f" stop-opacity="0" />
+											</radialGradient>
 										</defs>
 										<g id="house-armed" style="opacity: 0;">
-										  <rect x="194" y="356" opacity="0.75" fill="#d40050" width="86" height="138"/>
-										  <path fill="#ffffff" d="M249.5,424v-4c0-6.63-5.37-12-12-12s-12,5.37-12,12v4h-4v22h32v-22H249.5z M239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z M243.5,424h-12v-4c0-3.31,2.69-6,6-6s6,2.69,6,6V424z"/>
-										 </g>
-										 <g id="house-disarmed" style="opacity: 1;">
-										  <rect x="194" y="356" opacity="0.75" fill="#97bf0d" width="86" height="138"/>
-										  <path fill="#ffffff" d="M249.5,424v-6c0-6.63-5.37-12-12-12s-12,5.37-12,12h6c0-3.31,2.69-6,6-6s6,2.69,6,6v6h-22v22h32v-22H249.5zM239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z"/>
-										 </g>
-										 <rect id="doorway-light" x="194" y="356" fill="url(#half-radial)" width="86" height="43"/>
-										 <rect id="garage-light" x="328" y="373" fill="url(#half-radial)" width="260" height="130"/>
-										 <line id="roll-doors" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12" fill="none" stroke="#ffffff" stroke-width="250" stroke-dasharray="20 5 20 5 20 5 20 5 20 110" x1="458" y1="380" x2="458" y2="500"/>
+											<rect x="194" y="356" opacity="0.75" fill="#d40050" width="86"
+												height="138" />
+											<path fill="#ffffff"
+												d="M249.5,424v-4c0-6.63-5.37-12-12-12s-12,5.37-12,12v4h-4v22h32v-22H249.5z M239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z M243.5,424h-12v-4c0-3.31,2.69-6,6-6s6,2.69,6,6V424z" />
+										</g>
+										<g id="house-disarmed" style="opacity: 1;">
+											<rect x="194" y="356" opacity="0.75" fill="#97bf0d" width="86"
+												height="138" />
+											<path fill="#ffffff"
+												d="M249.5,424v-6c0-6.63-5.37-12-12-12s-12,5.37-12,12h6c0-3.31,2.69-6,6-6s6,2.69,6,6v6h-22v22h32v-22H249.5zM239.5,435.45V442h-4v-6.55c-1.19-0.69-2-1.97-2-3.45c0-2.21,1.79-4,4-4s4,1.79,4,4C241.5,433.48,240.7,434.75,239.5,435.45z" />
+										</g>
+										<rect id="doorway-light" x="194" y="356" fill="url(#half-radial)" width="86"
+											height="43" />
+										<rect id="garage-light" x="328" y="373" fill="url(#half-radial)" width="260"
+											height="130" />
+										<line id="roll-doors" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12"
+											fill="none" stroke="#ffffff" stroke-width="250"
+											stroke-dasharray="20 5 20 5 20 5 20 5 20 110" x1="458" y1="380" x2="458"
+											y2="500" />
 									</svg>
 								</div>
 							</div>
 							<div class="col-sm-12 col-lg-5 p-3">
 								<ul class="list-group list-group-flush border-bottom-0">
-									<li class="list-group-item d-flex lock px-0 px-sm-3" data-unit="switch-house-lock-pin">
+									<li class="list-group-item d-flex lock px-0 px-sm-3"
+										data-unit="switch-house-lock-pin">
 										<div class="title-status">
 											<h4>Security system</h4>
 											<p class="status"><span class="arm"></span></p>
@@ -242,17 +172,16 @@
 									</li>
 									<li class="list-group-item d-flex px-0 px-sm-3" data-unit="garage-doors">
 										<div class="title-status">
-											<h4>Garage doors</h4>
+											<h4>Front door</h4>
 											<p class="status">Closed</p>
 										</div>
-										<div class="ml-auto mt-2 timer-controls" data-controls="garage-doors">
-											<button data-action="open" type="button" class="btn btn-primary roll-doors-control" id="openDoor">Open</button>
-											<button data-action="pause" type="button" class="btn btn-secondary roll-doors-control">Pause</button>
-											<button data-action="resume" type="button" class="btn btn-secondary roll-doors-control">Resume</button>
-											<button data-action="close" type="button" class="btn btn-primary roll-doors-control">Close</button>
+										<div class="ml-auto mt-2" data-controls="garage-doors">
+											<button data-action="open" type="button"
+												class="btn btn-primary roll-doors-control" id="openDoor">Open</button>
 										</div>
 									</li>
-									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-Garden">
+									<li class="list-group-item d-flex py-4 px-0 px-sm-3"
+										data-unit="switch-light-Garden">
 										<div class="title-status">
 											<h5>Garden light</h5>
 										</div>
@@ -260,7 +189,8 @@
 											<input type="checkbox" id="switch-light-Garden">
 										</label>
 									</li>
-									<li class="list-group-item d-flex py-4 px-0 px-sm-3" data-unit="switch-light-garage">
+									<li class="list-group-item d-flex py-4 px-0 px-sm-3"
+										data-unit="switch-light-garage">
 										<div class="title-status">
 											<h5>Garage light</h5>
 										</div>
@@ -285,19 +215,22 @@
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item d-flex active" data-unit="switch-light-1">
 								<svg class="icon-sprite">
-									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 								</svg>
 								<h5>Kitchen</h5>
 								<label class="switch ml-auto checked">
 									<input type="checkbox" id="switch-light-1" checked>
 								</label>
 								<div class="info-holder info-rb" style="right:40px;">
-									<div data-toggle="popover-all" data-content="Checkbox element using localStorage to remember the last status." data-original-title="Switch ON/OFF" data-container="body" data-placement="top" data-offset="0,-6"></div>
+									<div data-toggle="popover-all"
+										data-content="Checkbox element using localStorage to remember the last status."
+										data-original-title="Switch ON/OFF" data-container="body" data-placement="top"
+										data-offset="0,-6"></div>
 								</div>
 							</li>
 							<li class="list-group-item d-flex" data-unit="switch-light-2">
 								<svg class="icon-sprite">
-									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 								</svg>
 								<h5>Hallway</h5>
 								<label class="switch ml-auto">
@@ -306,7 +239,7 @@
 							</li>
 							<li class="list-group-item d-flex" data-unit="switch-light-3">
 								<svg class="icon-sprite">
-									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 								</svg>
 								<h5>Living room</h5>
 								<label class="switch ml-auto">
@@ -315,19 +248,21 @@
 							</li>
 							<li class="list-group-item d-flex" data-unit="switch-light-4">
 								<svg class="icon-sprite">
-									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+									<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 								</svg>
 								<h5>Bedroom</h5>
 								<label class="switch ml-auto">
 									<input type="checkbox" id="switch-light-4">
 								</label>
 							</li>
-							
+
 						</ul>
 						<div class="card-body">
 							<div class="lights-controls" data-controls="switch-lights">
-								<button data-action="all-on" type="button" class="btn btn-secondary lights-control">All <strong>ON</strong></button>
-								<button data-action="all-off" type="button" class="btn btn-primary lights-control">All <strong>OFF</strong></button>
+								<button data-action="all-on" type="button" class="btn btn-secondary lights-control">All
+									<strong>ON</strong></button>
+								<button data-action="all-off" type="button" class="btn btn-primary lights-control">All
+									<strong>OFF</strong></button>
 							</div>
 						</div>
 					</div>
@@ -339,7 +274,7 @@
 					<div class="card" data-unit="switch-light-6">
 						<div class="card-body d-flex flex-row justify-content-start">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 							</svg>
 							<h5>Front doors</h5>
 							<label class="switch ml-auto">
@@ -350,7 +285,7 @@
 					<div class="card" data-unit="switch-light-7">
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 							</svg>
 							<h5>Garden</h5>
 							<label class="switch ml-auto">
@@ -358,11 +293,11 @@
 							</label>
 						</div>
 					</div>
-					
+
 					<div class="card" data-unit="switch-light-9">
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco"/>
+								<use xlink:href="assets/images/icons-sprite.svg#bulb-eco" />
 							</svg>
 							<h5>Garage</h5>
 							<label class="switch ml-auto">
@@ -383,7 +318,7 @@
 						<ul class="list-group borderless active" data-unit="wash-machine">
 							<li class="list-group-item d-flex pb-0">
 								<svg class="icon-sprite icon-1x">
-									<use xlink:href="assets/images/icons-sprite.svg#wash-machine"/>
+									<use xlink:href="assets/images/icons-sprite.svg#wash-machine" />
 								</svg>
 								<h5>Washing machine</h5>
 								<p class="ml-auto status">ON</p>
@@ -399,7 +334,7 @@
 						<ul class="list-group borderless active" data-unit="rope">
 							<li class="list-group-item d-flex pb-0">
 								<svg class="icon-sprite icon-1x">
-									<use xlink:href="assets/images/icons-sprite.svg#rope"/>
+									<use xlink:href="assets/images/icons-sprite.svg#rope" />
 								</svg>
 								<h5>Clothes Rope</h5>
 								<p class="ml-auto status">ON</p>
@@ -415,7 +350,7 @@
 						<ul class="list-group borderless active" data-unit="home-fridge">
 							<li class="list-group-item d-flex pb-0">
 								<svg class="icon-sprite icon-1x">
-									<use xlink:href="assets/images/icons-sprite.svg#home-fridge"/>
+									<use xlink:href="assets/images/icons-sprite.svg#home-fridge" />
 								</svg>
 								<h5>Fridge</h5>
 								<p class="ml-auto status">ON</p>
@@ -431,7 +366,7 @@
 						<ul class="list-group borderless" data-unit="tv-lcd">
 							<li class="list-group-item d-flex">
 								<svg class="icon-sprite icon-1x">
-									<use xlink:href="assets/images/icons-sprite.svg#tv-lcd"/>
+									<use xlink:href="assets/images/icons-sprite.svg#tv-lcd" />
 								</svg>
 								<h5>TV</h5>
 								<p class="ml-auto status">OFF</p>
@@ -447,11 +382,9 @@
 					<!-- Camera 1  START -->
 					<div class="card active" data-unit="switch-camera-1">
 						<div class="card-img-top card-stream">
-							<div class="embed-responsive embed-responsive-16by9">
-								<video muted loop>
-									<source src="assets/videos/street.mp4" type="video/mp4" />
-									<source src="assets/videos/street.webm" type="video/webm" />
-								</video>
+							<div class="embed-responsive">
+								<img src="http://192.168.1.35:8081/" alt="http://192.168.1.35:8081/" class="center"
+									height="480px">
 								<div class="card-preloader">
 									<div class="center-preloader d-flex align-items-center">
 										<div class="spinners">
@@ -469,7 +402,7 @@
 						</div>
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#camera"/>
+								<use xlink:href="assets/images/icons-sprite.svg#camera" />
 							</svg>
 							<h5>Outdoor front</h5>
 							<label class="switch ml-auto checked">
@@ -505,7 +438,7 @@
 						</div>
 						<div class="card-body d-flex">
 							<svg class="icon-sprite">
-								<use xlink:href="assets/images/icons-sprite.svg#camera"/>
+								<use xlink:href="assets/images/icons-sprite.svg#camera" />
 							</svg>
 							<h5>Joe's room</h5>
 							<label class="switch ml-auto">
@@ -522,9 +455,11 @@
 					<div class="card lock" data-unit="switch-house-lock">
 						<div class="card-body d-flex flex-wrap">
 							<svg class="icon-sprite icon-2x">
-								<use xlink:href="assets/images/icons-sprite.svg#home"/>
-								<use class="subicon-unlocked" xlink:href="assets/images/icons-sprite.svg#subicon-unlocked"/>
-								<use class="subicon-locked" xlink:href="assets/images/icons-sprite.svg#subicon-locked"/>
+								<use xlink:href="assets/images/icons-sprite.svg#home" />
+								<use class="subicon-unlocked"
+									xlink:href="assets/images/icons-sprite.svg#subicon-unlocked" />
+								<use class="subicon-locked"
+									xlink:href="assets/images/icons-sprite.svg#subicon-locked" />
 							</svg>
 							<div class="title-status">
 								<h4>Security system</h4>
@@ -543,24 +478,32 @@
 						<div class="card-body">
 							<div class="d-flex flex-wrap mb-2">
 								<svg class="icon-sprite icon-1x">
-									<use xlink:href="assets/images/icons-sprite.svg#garage"/>
+									<use xlink:href="assets/images/icons-sprite.svg#garage" />
 								</svg>
 								<div class="title-status">
 									<h5>Garage doors</h5>
 									<p class="status">Closed</p>
 								</div>
 								<div class="ml-auto timer-controls" data-controls="garage-doors-1">
-									<button data-action="open" type="button" class="btn btn-primary doors-control">Open</button>
-									<button data-action="pause" type="button" class="btn btn-secondary doors-control">Pause</button>
-									<button data-action="resume" type="button" class="btn btn-secondary doors-control">Resume</button>
-									<button data-action="close" type="button" class="btn btn-primary doors-control">Close</button>
+									<button data-action="open" type="button"
+										class="btn btn-primary doors-control">Open</button>
+									<button data-action="pause" type="button"
+										class="btn btn-secondary doors-control">Pause</button>
+									<button data-action="resume" type="button"
+										class="btn btn-secondary doors-control">Resume</button>
+									<button data-action="close" type="button"
+										class="btn btn-primary doors-control">Close</button>
 								</div>
 							</div>
 							<div class="progress">
-								<div class="progress-bar progress-tiny timer" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12"></div>
+								<div class="progress-bar progress-tiny timer" role="progressbar" aria-valuenow="0"
+									aria-valuemin="0" aria-valuemax="12"></div>
 							</div>
 							<div class="info-holder info-cb">
-								<div data-toggle="popover-all" data-content="Element driven by javascript (countdown timer)." data-original-title="Progress indicator" data-placement="top" data-offset="0,-12"></div>
+								<div data-toggle="popover-all"
+									data-content="Element driven by javascript (countdown timer)."
+									data-original-title="Progress indicator" data-placement="top" data-offset="0,-12">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -573,8 +516,10 @@
 					<!-- Demonstration - buttons -->
 					<button type="button" class="btn btn-primary my-2">PRIMARY</button>
 					<button type="button" class="btn btn-secondary my-2">SECONDARY</button>
-					<button type="button" class="btn btn-lg btn-danger mx-2 my-2" data-toggle="modal" data-target="#alarmModal"> Demo ALARM </button>
-					<button type="button" class="btn btn-danger my-2" data-toggle="modal" data-target="#fire-alarmModal"> Fire ALARM </button>
+					<button type="button" class="btn btn-lg btn-danger mx-2 my-2" data-toggle="modal"
+						data-target="#alarmModal"> Demo ALARM </button>
+					<button type="button" class="btn btn-danger my-2" data-toggle="modal"
+						data-target="#fire-alarmModal"> Fire ALARM </button>
 					<button type="button" class="btn btn-warning my-2">WARNING</button>
 					<button type="button" class="btn btn-success my-2">SUCCESS</button>
 					<button type="button" class="btn btn-info my-2">INFO</button>
@@ -586,14 +531,16 @@
 		<!-- Bottom navbar START -->
 
 		<%- include('../partials/navbar.ejs') %>
-		<!-- Bottom navbar END -->
+			<!-- Bottom navbar END -->
 
 	</div>
 	<!-- Wrapper END -->
 
 	<!-- FAB button - bottom right on large screens -->
 	<button id="info-toggler" type="button" class="btn btn-primary btn-fab btn-fixed-br d-none d-lg-inline-block">
-    	<svg class="icon-sprite"><use xlink:href="assets/images/icons-sprite.svg#info"/></svg>
+		<svg class="icon-sprite">
+			<use xlink:href="assets/images/icons-sprite.svg#info" />
+		</svg>
 	</button>
 
 
@@ -608,9 +555,11 @@
 
 	<!-- Basic theme functionality (arming, garage doors, switches ...) - using jQuery -->
 	<script src="assets/js/iot-functions.min.js"></script>
+		<!-- smarthome bundle -->
+		<script src="assets/js/smartHome.js"></script>
 
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function () {
 
 
 			// Get checkbox statuses from localStorage if available (IE)
@@ -620,7 +569,7 @@
 				// Switch statuses
 				var switchValues = JSON.parse(localStorage.getItem('switchValues')) || {};
 
-				$.each(switchValues, function(key, value) {
+				$.each(switchValues, function (key, value) {
 
 					// Apply only if element is included on the page
 					if ($('[data-unit="' + key + '"]').length) {
@@ -648,10 +597,6 @@
 								$('#garage-light').addClass("active");
 							}
 
-							//In case of Camera unit - play video
-							if (key === "switch-camera-1" || key === "switch-camera-2") {
-								$('[data-unit="' + key + '"] video')[0].play();
-							}
 
 						} else {
 							$('[data-unit="' + key + '"]').removeClass("active");
@@ -683,7 +628,7 @@
 			}
 
 			// Switch (checkbox element) toogler
-			$('.switch input[type="checkbox"]').on("change", function(t) {
+			$('.switch input[type="checkbox"]').on("change", function (t) {
 
 				// Check the time between changes to prevert Android native browser execute twice
 				// If you dont need support for Android native browser - just call "switchSingle" function
@@ -714,7 +659,7 @@
 			});
 
 			// All ON/OFF controls
-			$('.lights-control').click(function() {
+			$('.lights-control').click(function () {
 
 				var target = $(this).closest('.lights-controls').data('controls');
 				var action = $(this).data('action');
@@ -729,12 +674,12 @@
 			$('#armModal').on('hide.bs.modal', iot.clearCountdown);
 
 			// Reset PIN keyboard and checkbox
-			$('#cancel-keyboard').click(function() {
+			$('#cancel-keyboard').click(function () {
 				iot.clearKeyboard();
 			});
 
 			// Garage roll-doors controls
-			$('.roll-doors-control').click(function() {
+			$('.roll-doors-control').click(function () {
 
 				var target = $(this).closest('.timer-controls').data('controls');
 				var action = $(this).data('action');
@@ -743,7 +688,7 @@
 			});
 
 			// Garage doors controls
-			$('.doors-control').click(function() {
+			$('.doors-control').click(function () {
 
 				var target = $(this).closest('.timer-controls').data('controls');
 				var action = $(this).data('action');
@@ -752,7 +697,7 @@
 			});
 
 			// Alerts "Close" callback - hide modal and alert indicator dot when user closes all alerts
-			$('#alertsModal .alert').on('close.bs.alert', function() {
+			$('#alertsModal .alert').on('close.bs.alert', function () {
 				var sum = $('#alerts-toggler').attr('data-alerts');
 				sum = sum - 1;
 				$('#alerts-toggler').attr('data-alerts', sum);
@@ -766,7 +711,7 @@
 			});
 
 			// Show/hide tips (popovers) - FAB button (right bottom on large screens)
-			$('#info-toggler').click(function() {
+			$('#info-toggler').click(function () {
 
 				if ($('body').hasClass('info-active')) {
 					$('[data-toggle="popover-all"]').popover('hide');
@@ -778,7 +723,7 @@
 			});
 
 			// Hide tips (popovers) by clicking outside
-			$('body').on('click', function(pop) {
+			$('body').on('click', function (pop) {
 
 				if (pop.target.id !== 'info-toggler' && $('body').hasClass('info-active')) {
 					$('[data-toggle="popover-all"]').popover('hide');
@@ -790,7 +735,7 @@
 		});
 
 		// Apply necessary changes, functionality when content is loaded
-		$(window).on('load', function() {
+		$(window).on('load', function () {
 
 			// This script is necessary for cross browsers icon sprite support (IE9+, ...) 
 			svg4everybody();
@@ -800,38 +745,17 @@
 				countdown: true,
 				format: '%H:%M:%S',
 				duration: '1h17m10s',
-				callback: function() {
+				callback: function () {
 					$('[data-unit="wash-machine"]').removeClass("active");
 					$('[data-unit="wash-machine"] .status').html('OFF');
 				}
 			});
 
-			if ($('[data-unit="switch-camera-1"]').hasClass("active")) {
-				var activeVideo = $('[data-unit="switch-camera-1"] video').get(0);
 
-				if (activeVideo.paused) {
-					activeVideo.autoplay = true;
-					activeVideo.load();
-					activeVideo.play();
-				} else {
-					activeVideo.pause();
-				}
-			}
 
-			if ($('[data-unit="switch-camera-2"]').hasClass("active")) {
-				var activeVideo = $('[data-unit="switch-camera-2"] video').get(0);
-
-				if (activeVideo.paused) {
-					activeVideo.autoplay = true;
-					activeVideo.load();
-					activeVideo.play();
-				} else {
-					activeVideo.pause();
-				}
-			}
 
 			// "Timeout" function is not neccessary - important is to hide the preloader overlay
-			setTimeout(function() {
+			setTimeout(function () {
 
 				// Hide preloader overlay when content is loaded
 				$('#iot-preloader,.card-preloader').fadeOut();
@@ -845,7 +769,7 @@
 		});
 
 		// Apply necessary changes if window resized
-		$(window).on('resize', function() {
+		$(window).on('resize', function () {
 
 			// Modal reposition when the window is resized
 			$('.modal.centered:visible').each(iot.centerModal);
@@ -853,74 +777,41 @@
 			// Check for Main contents scrollbar visibility and set right position for FAB button
 			iot.positionFab();
 		});
-//mqtt
+		//openDoor
+		$('#openDoor').click(function () {
 
-    var wsbroker = "192.168.1.35";  //mqtt websocket enabled broker
-    var wsport = 9001 // port for above
+			//use the below if you want to publish to a topic on connect
+			console.log("door open")
+			message = new Paho.MQTT.Message("true");
+			message.destinationName = "smartHome/frontDoor";
+			client.send(message);
+			$('[data-unit="garage-doors"] .status').html('Open').addClass('text-secondary');
+			$('[data-unit="garage-doors"] button').prop('disabled', true);
 
-    var client = new Paho.MQTT.Client(wsbroker, wsport,
-        "myclientid_" + parseInt(Math.random() * 100, 10));
+		});
+		function init() {
+			
+			/* $('#switch-light-doorway').change(function () {
+			   if($(this).prop("checked") == true){
+					  //use the below if you want to publish to a topic on connect
+			   message = new Paho.MQTT.Message("true");
+			   message.destinationName = "smartHome/led/kitchen";
+			   client.send(message);
+				   }
+				   else if($(this).prop("checked") == false){
+					   //use the below if you want to publish to a topic on connect
+			   message = new Paho.MQTT.Message("false");
+			   message.destinationName = "smartHome/led/kitchen";
+			   client.send(message);
+				   }
+		});*/
 
-    client.onConnectionLost = function (responseObject) {
-      console.log("connection lost: " + responseObject.errorMessage);
-    };
-
-    client.onMessageArrived = function (message) {
-      console.log(message.destinationName, ' -- ', message.payloadString);
-    };
-
-    var options = {
-		userName: "pi",
-    password: "2021",
-      timeout: 3,
-      onSuccess: function () {
-        console.log("mqtt connected");
-        // Connection succeeded; subscribe to our topic, you can add multile lines of these
-       /* client.subscribe('smartHome/led/livingRoom', {qos: 1});
-
-    
-        //use the below if you want to publish to a topic on connect
-        message = new Paho.MQTT.Message("true");
-        message.destinationName = "smartHome/led/kitchen";
-        client.send(message);*/
-  
-      },
-      onFailure: function (message) {
-        console.log("Connection failed: " + message.errorMessage);
-      }
-    };
- //openDoor
- $('#openDoor').click(function () {
-
-//use the below if you want to publish to a topic on connect
-console.log("door open")
-message = new Paho.MQTT.Message("true");
-message.destinationName = "smartHome/frontDoor";
-client.send(message);
-
-});
-  function init() {
-	client.connect(options);
-	 /* $('#switch-light-doorway').change(function () {
-		if($(this).prop("checked") == true){
-               //use the below if you want to publish to a topic on connect
-        message = new Paho.MQTT.Message("true");
-        message.destinationName = "smartHome/led/kitchen";
-        client.send(message);
-            }
-            else if($(this).prop("checked") == false){
-                //use the below if you want to publish to a topic on connect
-        message = new Paho.MQTT.Message("false");
-        message.destinationName = "smartHome/led/kitchen";
-        client.send(message);
-            }
- });*/
-
-  }
+		}
 	</script>
 
 </body>
 
 
 <!-- Mirrored from symbiotdelta.creatingo.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Apr 2021 20:34:28 GMT -->
+
 </html>
